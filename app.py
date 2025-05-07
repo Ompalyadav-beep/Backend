@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-CORS(app, origins=["https://cheerful-fox-cb5731.netlify.app"], "null"])
+CORS(app, origins=["https://cheerful-fox-cb5731.netlify.app"])
 
 def load_trending_data():
     data = []
