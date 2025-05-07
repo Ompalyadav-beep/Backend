@@ -77,16 +77,24 @@ def refresh_trending():
 
 
 @app.route('/login', methods=['POST']) # Only POST for API login
+from flask import request, jsonify, session
+
+@app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'POST':
+    if request.is_json:
         data = request.get_json()
-        username = data.get('username')
-        password = data.get('password')
-        if username == 'admin' and password == 'admin123':
-            session['user'] = username
-            return jsonify({"message": "Login successful", "user": username}), 200
-        return jsonify({"error": "Invalid credentials"}), 401 # Return 401 for failed login
-    # GET request for /login is removed, frontend will have its own login page
+    else:
+        data = request.form  # fallback for form-encoded data
+
+    username = data.get('username')
+    password = data.get('password')
+
+    if username == 'admin' and password == 'admin123':
+        session['user'] = username
+        return jsonify({"message": "Login successful", "user": username}), 200
+
+    return jsonify({"error": "Invalid credentials"}), 401
+# GET request for /login is removed, frontend will have its own login page
 
 @app.route('/logout', methods=['POST']) # Changed to POST as it changes server state
 def logout():
