@@ -76,8 +76,6 @@ def refresh_trending():
     return jsonify({'message': 'Trending data refresh initiated!'})
 
 
-@app.route('/login', methods=['POST']) # Only POST for API login
-from flask import request, jsonify, session
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -169,8 +167,6 @@ def graph_data():
 # @app.route('/<path:path>')
 # @app.route('/graph') (GET for graph.html)
 # /login GET method
-
-
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
