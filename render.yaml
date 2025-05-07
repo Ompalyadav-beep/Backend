@@ -6,3 +6,6 @@ services:
       pip install -r requirements.txt
       playwright install
     startCommand: python app.py  # or whatever command you use to run your Flask app
+    envVars:
+          - key: PORT
+            value: 10000
