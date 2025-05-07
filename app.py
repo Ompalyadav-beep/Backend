@@ -6,6 +6,7 @@ import threading
 from search_scraper import scrape_youtube_search # Ensure this path is correct
 from trending import scrape_trending # Ensure this path is correct
 from flask_cors import CORS # Import CORS
+import os
 
 app = Flask(__name__)
 app.secret_key = 'e3a1bba8b50e463fa53a1d0d3ffbd1b2'
@@ -161,5 +162,9 @@ def graph_data():
 # @app.route('/graph') (GET for graph.html)
 # /login GET method
 
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=5000) # Explicitly set host and port
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
+# Explicitly set host and port
