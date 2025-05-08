@@ -7,6 +7,16 @@ from search_scraper import scrape_youtube_search
 from trending import scrape_trending
 from flask_cors import CORS
 
+import asyncio
+import subprocess
+
+# Ensure Playwright browsers are installed at runtime
+async def install_browsers():
+    subprocess.run(["playwright", "install", "chromium"])
+
+asyncio.run(install_browsers())
+
+
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app, origins="*", supports_credentials=False)
